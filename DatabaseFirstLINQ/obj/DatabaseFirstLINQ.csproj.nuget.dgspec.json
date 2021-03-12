@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\elezibeth\\source\\repos\\Database_First_LINQ\\DatabaseFirstLINQ\\DatabaseFirstLINQ.csproj": {}
+    "C:\\Users\\lewvi\\source\\repos\\Database_First_LINQ\\DatabaseFirstLINQ\\DatabaseFirstLINQ.csproj": {}
   },
   "projects": {
-    "C:\\Users\\elezibeth\\source\\repos\\Database_First_LINQ\\DatabaseFirstLINQ\\DatabaseFirstLINQ.csproj": {
+    "C:\\Users\\lewvi\\source\\repos\\Database_First_LINQ\\DatabaseFirstLINQ\\DatabaseFirstLINQ.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\elezibeth\\source\\repos\\Database_First_LINQ\\DatabaseFirstLINQ\\DatabaseFirstLINQ.csproj",
+        "projectUniqueName": "C:\\Users\\lewvi\\source\\repos\\Database_First_LINQ\\DatabaseFirstLINQ\\DatabaseFirstLINQ.csproj",
         "projectName": "DatabaseFirstLINQ",
-        "projectPath": "C:\\Users\\elezibeth\\source\\repos\\Database_First_LINQ\\DatabaseFirstLINQ\\DatabaseFirstLINQ.csproj",
-        "packagesPath": "C:\\Users\\elezibeth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\elezibeth\\source\\repos\\Database_First_LINQ\\DatabaseFirstLINQ\\obj\\",
+        "projectPath": "C:\\Users\\lewvi\\source\\repos\\Database_First_LINQ\\DatabaseFirstLINQ\\DatabaseFirstLINQ.csproj",
+        "packagesPath": "C:\\Users\\lewvi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\lewvi\\source\\repos\\Database_First_LINQ\\DatabaseFirstLINQ\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\elezibeth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lewvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -70,7 +70,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

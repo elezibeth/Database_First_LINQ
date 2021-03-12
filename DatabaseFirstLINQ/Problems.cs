@@ -16,8 +16,8 @@ namespace DatabaseFirstLINQ
         public void RunLINQQueries()
         {
            ProblemOne();
-            //ProblemTwo();
-            //ProblemThree();
+            ProblemTwo();
+            ProblemThree();
             //ProblemFour();
             //ProblemFive();
             //ProblemSix();
@@ -46,24 +46,32 @@ namespace DatabaseFirstLINQ
             Console.WriteLine($"Problem ONE solution = {userCount}");
         }
 
-        //private void ProblemTwo()
-        //{
-        //    // Write a LINQ query that retrieves the users from the User tables then print each user's email to the console.
-        //    var users = _context.Users;
+        private void ProblemTwo()
+        {
+            // Write a LINQ query that retrieves the users from the User tables then print each user's email to the console.
+            var users = _context.Users;
 
-        //    foreach (User user in users)
-        //    {
-        //        Console.WriteLine(user.Email);
-        //    }
+            foreach (User user in users)
+            {
+                Console.WriteLine(user.Email);
+            }
 
-        //}
+        }
 
-        //        private void ProblemThree()
-        //        {
-        //            // Write a LINQ query that gets each product where the products price is greater than $150.
-        //            // Then print the name and price of each product from the above query to the console.
+        private void ProblemThree()
+        {
+            // Write a LINQ query that gets each product where the products price is greater than $150.
+            var products = _context.Products.Where(e => e.Price > 150);
+            
+            foreach(Product item in products)
+            {
+                Console.WriteLine($"Name: " + item.Name);
+                Console.WriteLine($"Price: " + item.Price);
+            }
+            // Then print the name and price of each product from the above query to the console.
 
-        //        }
+
+        }
 
         //        private void ProblemFour()
         //        {

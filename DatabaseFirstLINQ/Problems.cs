@@ -16,18 +16,18 @@ namespace DatabaseFirstLINQ
         public void RunLINQQueries()
         {
             //ProblemOne();
-            // ProblemTwo();
-            // ProblemThree();
-            // ProblemFour();
-            // ProblemFive();
-            // ProblemSix();
-            // ProblemSeven();
-            // ProblemEight();
+            //ProblemTwo();
+            //ProblemThree();
+            //ProblemFour();
+            //ProblemFive();
+            //ProblemSix();
+            //ProblemSeven();
+            //ProblemEight();
             //ProblemNine();
-            //ProblemTen();
-            ProblemEleven();
-            ProblemTwelve();
-            ProblemThirteen();
+            ProblemTen();
+            //ProblemEleven();
+            //ProblemTwelve();
+            //ProblemThirteen();
             //ProblemFourteen();
             //ProblemFifteen();
             //ProblemSixteen();
@@ -158,18 +158,39 @@ namespace DatabaseFirstLINQ
             Console.WriteLine($"#9 - Product's sum: {productsSum}");
         }
 
-        //private void ProblemTen()
-        //{
-        //    // Write a LINQ query that retreives all of the products in the shopping cart of users who have the role of "Employee"
-        //    // Then print the user's email as well as the product's name, price, and quantity to the console.
+        private void ProblemTen()
+        {
+            //Write a LINQ query that retreives all of the products in the shopping cart of users who have the role of "Employee"
 
-        //}
 
-        // <><><><><><><><> CUD (Create, Update, Delete) Actions <><><><><><><><><>
 
-        // <><> C Actions (Create) <><>
+            var UsersWithEmployeeRole = _context.UserRoles
+                                .Include(u => u.Role)
+                                .Include(u => u.User)
+                                .Include(u => u.User.ShoppingCarts)
+                                .Where(u => u.Role.RoleName == "Employee")
+                                .ToList();
 
-        private void ProblemEleven()
+            var products = _context.ShoppingCarts
+                                .Include(u => u.Product)
+                                .Include(u => u.User)
+                                .Where(u => UsersWithEmployeeRole.Any(UE => UE.User.Id == u.UserId))
+                                .ToList();
+            foreach (ShoppingCart sc in products)
+            {
+                Console.WriteLine($"#10: User:{sc.User.Email}.  Product Name: {sc.Product.Name} {sc.User.Email}");
+                Console.ReadLine();
+            }
+
+            //Then print the user's email as well as the product's name, price, and quantity to the console.
+        }
+
+            //<><><><><><><><> CUD(Create, Update, Delete) Actions<><><><><><><><><>
+
+             //<><> C Actions(Create) <><>
+
+
+            private void ProblemEleven()
         {
             //Create a new User object and add that user to the Users table using LINQ.
             User newUser = new User()
@@ -200,12 +221,13 @@ namespace DatabaseFirstLINQ
         {
             // Add the role of "Customer" to the user we just created in the UserRoles junction table using LINQ.
             var roleId = _context.Roles.Where(r => r.RoleName == "Customer").Select(r => r.Id).SingleOrDefault();
-            var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).SingleOrDefault();
+            var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id);
             UserRole newUserRole = new UserRole()
             {
                 UserId = userId,
                 RoleId = roleId
             };
+
             _context.UserRoles.Add(newUserRole);
             _context.SaveChanges();
         }
@@ -287,43 +309,45 @@ namespace DatabaseFirstLINQ
 
         private void ProblemTwenty()
         {
-            var user = _context.Users.Where(u => u.Email == "oda@gmail.com");
-            _context.Users.Remove(user);
+            var users = _context.Users.Where(u => u.Email == "oda@gmail.com");
+            foreach (User user in users)
+            {
+                _context.Users.Remove(user);
+            }
             _context.SaveChanges();
             // Delete the user with the email "oda@gmail.com" from the Users table using LINQ.
-
         }
 
-        //        // <><><><><><><><> BONUS PROBLEMS <><><><><><><><><>
+        // <><><><><><><><> BONUS PROBLEMS <><><><><><><><><>
 
-        //        private void BonusOne()
-        //        {
-        //            // Prompt the user to enter in an email and password through the console.
-        //            // Take the email and password and check if the there is a person that matches that combination.
-        //            // Print "Signed In!" to the console if they exists and the values match otherwise print "Invalid Email or Password.".
-        //        }
+        //private void BonusOne()
+        //{
+        //    // Prompt the user to enter in an email and password through the console.
+        //    // Take the email and password and check if the there is a person that matches that combination.
+        //    // Print "Signed In!" to the console if they exists and the values match otherwise print "Invalid Email or Password.".
+        //}
 
-        //        private void BonusTwo()
-        //        {
-        //            // Write a query that finds the total of every users shopping cart products using LINQ.
-        //            // Display the total of each users shopping cart as well as the total of the toals to the console.
-        //        }
+        //private void BonusTwo()
+        //{
+        //    // Write a query that finds the total of every users shopping cart products using LINQ.
+        //    // Display the total of each users shopping cart as well as the total of the toals to the console.
+        //}
 
-        //        // BIG ONE
-        //        private void BonusThree()
-        //        {
-        //            // 1. Create functionality for a user to sign in via the console
-        //            // 2. If the user succesfully signs in
-        //                // a. Give them a menu where they perform the following actions within the console
-        //                    // View the products in their shopping cart
-        //                    // View all products in the Products table
-        //                    // Add a product to the shopping cart (incrementing quantity if that product is already in their shopping cart)
-        //                    // Remove a product from their shopping cart
-        //            // 3. If the user does not succesfully sing in
-        //                // a. Display "Invalid Email or Password"
-        //                // b. Re-prompt the user for credentials
+        //// BIG ONE
+        //private void BonusThree()
+        //{
+        //    // 1. Create functionality for a user to sign in via the console
+        //    // 2. If the user succesfully signs in
+        //    // a. Give them a menu where they perform the following actions within the console
+        //    // View the products in their shopping cart
+        //    // View all products in the Products table
+        //    // Add a product to the shopping cart (incrementing quantity if that product is already in their shopping cart)
+        //    // Remove a product from their shopping cart
+        //    // 3. If the user does not succesfully sing in
+        //    // a. Display "Invalid Email or Password"
+        //    // b. Re-prompt the user for credentials
 
-        //        }
+        //}
 
     }
 }

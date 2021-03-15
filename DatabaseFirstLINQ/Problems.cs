@@ -62,8 +62,8 @@ namespace DatabaseFirstLINQ
         {
             // Write a LINQ query that gets each product where the products price is greater than $150.
             var products = _context.Products.Where(e => e.Price > 150);
-            
-            foreach(Product item in products)
+
+            foreach (Product item in products)
             {
                 Console.WriteLine($"Name: " + item.Name);
                 Console.WriteLine($"Price: " + item.Price);
@@ -76,7 +76,7 @@ namespace DatabaseFirstLINQ
         private void ProblemFour()
         {
             // Write a LINQ query that gets each product that contains an "s" in the products name.
-          
+
 
             var sContaining =
             from item in _context.Products
@@ -86,20 +86,20 @@ namespace DatabaseFirstLINQ
             var listS = sContaining.ToList();
 
             // Then print the name of each product from the above query to the console.
-            foreach(Product item in listS)
+            foreach (Product item in listS)
             {
                 Console.WriteLine($"Problem 4:  {item.Name}");
             }
-            
+
 
         }
 
         private void ProblemFive()
         {
             // Write a LINQ query that gets all of the users who registered BEFORE 2016
-            var users = _context.Users.Where(x => x.RegistrationDate < new DateTime(2016,1,1));
+            var users = _context.Users.Where(x => x.RegistrationDate < new DateTime(2016, 1, 1));
 
-            foreach(User user in users)
+            foreach (User user in users)
             {
                 Console.WriteLine($"Problem #5: {user.Email}");
             }
@@ -113,7 +113,7 @@ namespace DatabaseFirstLINQ
             // Write a LINQ query that gets all of the users who registered AFTER 2016 and BEFORE 2018
             var users = _context.Users.Where(x => x.RegistrationDate > new DateTime(2016, 1, 1) && x.RegistrationDate < new DateTime(2018, 1, 1));
             // Then print each user's email and registration date to the console.
-            foreach( User user in users)
+            foreach (User user in users)
             {
                 Console.WriteLine($"Problem six:email: {user.Email} date:{user.RegistrationDate} password: {user.Password}");
             }
@@ -141,11 +141,11 @@ namespace DatabaseFirstLINQ
                             .Include(s => s.Product)
                             .Where(s => s.User.Email == "afton@gmail.com");
 
-            foreach(ShoppingCart p in userCart)
+            foreach (ShoppingCart p in userCart)
             {
                 Console.WriteLine($"#8 - Product name: {p.Product.Name}.  Product price: ${p.Product.Price}.  Quantity: {p.Quantity}");
             }
-          
+
         }
 
         private void ProblemNine()
@@ -159,48 +159,70 @@ namespace DatabaseFirstLINQ
             Console.ReadLine();
         }
 
-        //private void ProblemTen()
-        //{
-        //    // Write a LINQ query that retreives all of the products in the shopping cart of users who have the role of "Employee"
-        //    // Then print the user's email as well as the product's name, price, and quantity to the console.
+        private void ProblemTen()
+        {
+            // Write a LINQ query that retreives all of the products in the shopping cart of users who have the role of "Employee"
+            var pro = _context.Users.
+            // Then print the user's email as well as the product's name, price, and quantity to the console.
 
-        //}
+        }
 
-        //        // <><><><><><><><> CUD (Create, Update, Delete) Actions <><><><><><><><><>
+        // <><><><><><><><> CUD (Create, Update, Delete) Actions <><><><><><><><><>
 
-        //        // <><> C Actions (Create) <><>
+        // <><> C Actions (Create) <><>
 
-        //        private void ProblemEleven()
-        //        {
-        //            // Create a new User object and add that user to the Users table using LINQ.
-        //            User newUser = new User()
-        //            {
-        //                Email = "david@gmail.com",
-        //                Password = "DavidsPass123"
-        //            };
-        //            _context.Users.Add(newUser);
-        //            _context.SaveChanges();
-        //        }
+        private void ProblemEleven()
+        {
+            //Create a new User object and add that user to the Users table using LINQ.
+           User newUser = new User()
+           {
+               Email = "david@gmail.com",
+               Password = "DavidsPass123"
+           };
+            _context.Users.Add(newUser);
+            _context.SaveChanges();
+        }
 
-        //        private void ProblemTwelve()
-        //        {
-        //            // Create a new Product object and add that product to the Products table using LINQ.
 
-        //        }
+        private void ProblemTwelve()
+        {
+            // Create a new Product object and add that product to the Products table using LINQ.
+            Product product = new Product()
+            {
+                Name = "Silly Putty",
+                Description = "Polymer toy",
+                Price = 2
 
-        //        private void ProblemThirteen()
-        //        {
-        //            // Add the role of "Customer" to the user we just created in the UserRoles junction table using LINQ.
-        //            var roleId = _context.Roles.Where(r => r.RoleName == "Customer").Select(r => r.Id).SingleOrDefault();
-        //            var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).SingleOrDefault();
-        //            UserRole newUserRole = new UserRole()
-        //            {
-        //                UserId = userId,
-        //                RoleId = roleId
-        //            };
-        //            _context.UserRoles.Add(newUserRole);
-        //            _context.SaveChanges();
-        //        }
+            };
+            _context.Products.Add(product);
+            _context.SaveChanges();
+
+                
+      
+        }
+        
+        
+
+    }
+
+
+
+
+
+//private void ProblemThirteen()
+//{
+//    // Add the role of "Customer" to the user we just created in the UserRoles junction table using LINQ.
+//    var roleId = _context.Roles.Where(r => r.RoleName == "Customer").Select(r => r.Id).SingleOrDefault();
+//    var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).SingleOrDefault();
+//    UserRole newUserRole = new UserRole()
+//    {
+//        UserId = userId,
+//        RoleId = roleId
+//    };
+//    _context.UserRoles.Add(newUserRole);
+//    _context.SaveChanges();
+//}
+//}
 
         //        private void ProblemFourteen()
         //        {

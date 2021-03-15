@@ -136,25 +136,16 @@ namespace DatabaseFirstLINQ
         private void ProblemEight()
         {
             // Write a LINQ query that retreives all of the products in the shopping cart of the user who has the email "afton@gmail.com".
-            var userId = _context.Users.Where(u => u.Email == "afton@gmail.com").Select(u => u.Id).ToList();
-            var userId2 = userId.ToList();
+            var userCart = _context.ShoppingCarts
+                            .Include(s => s.User)
+                            .Include(s => s.Product)
+                            .Where(s => s.User.Email == "afton@gmail.com");
 
-            //Shopping cart
-            var sC = _context.ShoppingCarts.Where(u => u.UserId == userId[0]);
-
-            //Product IDs in shopping cart
-            var products = sC.Select(u => u.ProductId).ToList();
-
-            // Then print the product's name, price, and quantity to the console.
-            foreach(int p in products)
+            foreach(ShoppingCart p in userCart)
             {
-                var name = _context.Product.Where(p => )
-                Console.WriteLine($"#8 Name: {_context.Products[p].Name}.  Price ${p.Price}. Quantity: {p.Quantity}");
-
+                Console.WriteLine($"#8 - Product name: {p.Product.Name}.  Product price: ${p.Product.Price}.  Quantity: {p.Quantity}");
             }
-            Console.ReadLine();
-
-            s
+          
         }
 
         //        private void ProblemNine()
